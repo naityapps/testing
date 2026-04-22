@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naity – IELTS Speaking Score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0f0f;
+      --ink-soft: #5a5a5a;
+      --ink-faint: #a0a0a0;
+      --paper: #faf9f7;
+      --paper-warm: #f2efe9;
+      --accent: #226488;
+      --accent-light: #e8f2f7;
+      --rule: #e2dfd8;
+      --band: #d4a847;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(250,249,247,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--rule); }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+    .nav-cta svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      max-width: 520px;
+      margin-bottom: 16px;
+      line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-top: 40px;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 15px; font-weight: 500;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,107,74,0.2);
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--ink-faint);
+      opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+    }
+
+    .hero-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--accent);
+      margin-top: 0;
+      margin-bottom: 0;
+      opacity: 0; animation: fadeUp 0.7s 0.45s forwards;
+    }
+
+    /* ── AVAILABILITY ── */
+    .availability {
+      padding: 80px 48px;
+      background: var(--paper-warm);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .availability-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .availability-text {}
+    .availability-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+    .availability-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .availability-sub {
+      font-size: 15px; font-weight: 300;
+      color: var(--ink-soft);
+    }
+    .availability-platforms {
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+      flex-shrink: 0;
+    }
+    .platform-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px;
+      border-radius: 100px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .platform-badge:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .platform-badge.ios {
+      background: var(--ink); color: var(--paper);
+    }
+    .platform-badge.android {
+      background: var(--paper); color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .platform-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .platform-badge .coming-soon {
+      font-size: 10px; font-weight: 400;
+      color: var(--ink-faint);
+      display: block;
+      line-height: 1;
+    }
+    .platform-badge-label { display: flex; flex-direction: column; gap: 2px; }
+    .platform-badge-store { font-size: 10px; font-weight: 400; opacity: 0.6; line-height: 1; }
+    .platform-badge-name { font-size: 14px; font-weight: 500; line-height: 1.2; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 48px;
+      border-top: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: var(--ink);
+      text-decoration: none;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-links {
+      display: flex; gap: 24px;
+    }
+    .footer-links a, .footer-plain {
+      font-size: 13px; color: var(--ink-faint);
+      text-decoration: none;
+    }
+    .footer-links a { transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy {
+      font-size: 13px; color: var(--ink-faint);
+      width: 100%;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 24px; }
+      .hero { padding-left: 24px; padding-right: 24px; }
+      .availability { padding: 60px 24px; }
+      .availability-inner { flex-direction: column; align-items: flex-start; }
+      footer { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Naity<span>.</span></a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">IELTS Speaking · AI Scoring</div>
+    <h1 class="hero-headline">Examiner precision.<br>AI speed.<br><em>Less than a coffee.</em></h1>
+    <p class="hero-sub">Speak. Submit. Get your full band score and detailed feedback in minutes. No examiner. No waiting. No guesswork.</p>
+    <div class="hero-actions">
+      <a href="https://apps.apple.com/us/app/naity-ielts-speaking-score/id6744362120" class="platform-badge ios">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="platform-badge-label">
+          <span class="platform-badge-store">Download on the</span>
+          <span class="platform-badge-name">App Store</span>
+        </div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.naity.testing" class="platform-badge android">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341c-.613 0-1.111-.498-1.111-1.111s.498-1.111 1.111-1.111 1.111.498 1.111 1.111-.498 1.111-1.111 1.111m-11.046 0c-.613 0-1.111-.498-1.111-1.111s.498-1.111 1.111-1.111 1.111.498 1.111 1.111-.498 1.111-1.111 1.111m11.4-6.675l1.993-3.453a.414.414 0 0 0-.152-.567.414.414 0 0 0-.566.152l-2.018 3.495A11.86 11.86 0 0 0 12 7.748c-1.812 0-3.524.414-5.134 1.045L4.848 5.298a.414.414 0 0 0-.566-.152.414.414 0 0 0-.152.567l1.993 3.453C3.696 10.56 2.25 12.95 2.25 15.66h19.5c0-2.71-1.446-5.1-3.873-6.994"/></svg>
+        <div class="platform-badge-label">
+          <span class="platform-badge-store">Get it on</span>
+          <span class="platform-badge-name">Google Play</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-links">
+      <span class="footer-plain">naityapp@gmail.com</span>
+      <a href="https://naityapps.github.io/testing-privacy/">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">© 2026 Naity. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Scroll nav border
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
+</html>
