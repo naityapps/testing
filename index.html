@@ -117,16 +117,16 @@
     .footer-links a:hover { color: var(--ink); }
     .footer-copy { font-size: 13px; color: var(--ink-faint); width: 100%; }
 
-    /* ── PRIVACY OVERLAY ── */
-    #privacy {
+    /* ── SHARED OVERLAY STYLES ── */
+    .overlay {
       display: none;
       position: fixed; inset: 0; z-index: 200;
       background: var(--paper);
       overflow-y: auto;
     }
-    #privacy.active { display: block; }
+    .overlay.active { display: block; }
 
-    .privacy-bar {
+    .overlay-bar {
       position: sticky; top: 0;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 48px;
@@ -135,12 +135,12 @@
       border-bottom: 1px solid var(--rule);
       z-index: 10;
     }
-    .privacy-bar-logo {
+    .overlay-bar-logo {
       font-family: 'DM Serif Display', serif;
       font-size: 18px; color: var(--ink); text-decoration: none;
     }
-    .privacy-bar-logo span { color: var(--accent); }
-    .privacy-close {
+    .overlay-bar-logo span { color: var(--accent); }
+    .overlay-close {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 13px; font-weight: 500; color: var(--ink-soft);
       background: none; border: 1px solid var(--rule);
@@ -148,31 +148,31 @@
       cursor: pointer; text-decoration: none;
       transition: color 0.2s, border-color 0.2s;
     }
-    .privacy-close:hover { color: var(--ink); border-color: var(--ink); }
-    .privacy-close svg { width: 12px; height: 12px; }
+    .overlay-close:hover { color: var(--ink); border-color: var(--ink); }
+    .overlay-close svg { width: 12px; height: 12px; }
 
-    .privacy-content {
+    .overlay-content {
       max-width: 700px; margin: 0 auto;
       padding: 60px 48px 80px;
     }
-    .privacy-content h1 {
+    .overlay-content h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(28px, 4vw, 40px);
       letter-spacing: -0.025em; margin-bottom: 8px;
     }
-    .privacy-content .date { font-size: 13px; color: var(--ink-faint); margin-bottom: 48px; }
-    .privacy-content h2 {
+    .overlay-content .date { font-size: 13px; color: var(--ink-faint); margin-bottom: 48px; }
+    .overlay-content h2 {
       font-size: 11px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--ink-faint);
       margin-top: 40px; margin-bottom: 12px;
     }
-    .privacy-content p { font-size: 15px; font-weight: 300; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.75; }
-    .privacy-content ul { margin: 0 0 12px; padding-left: 20px; }
-    .privacy-content li { font-size: 15px; font-weight: 300; color: var(--ink-soft); margin-bottom: 6px; line-height: 1.75; }
-    .privacy-content a { color: var(--accent); text-decoration: none; }
-    .privacy-content a:hover { text-decoration: underline; }
-    .privacy-content strong { font-weight: 500; color: var(--ink); }
+    .overlay-content p { font-size: 15px; font-weight: 300; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.75; }
+    .overlay-content ul { margin: 0 0 12px; padding-left: 20px; }
+    .overlay-content li { font-size: 15px; font-weight: 300; color: var(--ink-soft); margin-bottom: 6px; line-height: 1.75; }
+    .overlay-content a { color: var(--accent); text-decoration: none; }
+    .overlay-content a:hover { text-decoration: underline; }
+    .overlay-content strong { font-weight: 500; color: var(--ink); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -185,8 +185,8 @@
       nav { padding: 16px 24px; }
       .hero { padding-left: 24px; padding-right: 24px; }
       footer { padding: 32px 24px; }
-      .privacy-bar { padding: 14px 24px; }
-      .privacy-content { padding: 40px 24px 60px; }
+      .overlay-bar { padding: 14px 24px; }
+      .overlay-content { padding: 40px 24px 60px; }
     }
   </style>
 </head>
@@ -225,23 +225,24 @@
       <div class="footer-links">
         <span class="footer-plain">naityapp@gmail.com</span>
         <a href="#privacy">Privacy Policy</a>
+        <a href="#partner">Partner Agreement</a>
       </div>
       <div class="footer-copy">© 2026 Naity. All rights reserved.</div>
     </footer>
   </div>
 
   <!-- PRIVACY OVERLAY -->
-  <div id="privacy">
-    <div class="privacy-bar">
-      <a href="#" class="privacy-bar-logo">Naity<span>.</span></a>
-      <a href="#" class="privacy-close">
+  <div id="privacy" class="overlay">
+    <div class="overlay-bar">
+      <a href="#" class="overlay-bar-logo">Naity<span>.</span></a>
+      <a href="#" class="overlay-close">
         <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
         Close
       </a>
     </div>
-    <div class="privacy-content">
+    <div class="overlay-content">
       <h1>Privacy Policy</h1>
       <p class="date">Effective Date: April 15, 2026</p>
 
@@ -292,21 +293,90 @@
     </div>
   </div>
 
+  <!-- PARTNER AGREEMENT OVERLAY -->
+  <div id="partner" class="overlay">
+    <div class="overlay-bar">
+      <a href="#" class="overlay-bar-logo">Naity<span>.</span></a>
+      <a href="#" class="overlay-close">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Close
+      </a>
+    </div>
+    <div class="overlay-content">
+      <h1>Partner Affiliate Agreement</h1>
+      <p class="date">Public Offer · Effective Date: May 20, 2026</p>
+
+      <h2>1. General Provisions</h2>
+      <p>This Partner Affiliate Agreement (the "Agreement" or "Public Offer") is a public offer by the Naity application (the "Company") addressed to any individual or legal entity (the "Partner") willing to participate in the Naity Affiliate Program.</p>
+      <p>Naity is a mobile application that helps English learners assess their IELTS Speaking band score through AI-powered evaluation.</p>
+      <p>Acceptance of this Public Offer is made <strong>exclusively by email confirmation</strong>. The Agreement is considered accepted only upon the Partner sending an email to <a href="mailto:naityapp@gmail.com">naityapp@gmail.com</a> expressing their intent to participate, and the Company's written reply confirming the partnership and the individually agreed terms.</p>
+      <p>Acceptance by any other means — including use of a promo code, verbal agreement, or any other action — does not constitute conclusion of this Agreement.</p>
+
+      <h2>2. Subject of the Agreement</h2>
+      <p>The Partner undertakes to promote the Naity application among their audience, and the Company undertakes to pay remuneration for purchases made by users using the Partner's personal promo code.</p>
+      <p>The Company assigns each Partner a unique personal promo code that users may enter in the app to receive a discount on the purchase of attempts.</p>
+      <p>The specific discount amount for users and the remuneration percentage for the Partner are agreed individually between the parties prior to commencement of cooperation and are documented in writing (including by email or messenger).</p>
+
+      <h2>3. Partner's Rights and Obligations</h2>
+      <p>The Partner is entitled to: receive a personal promo code; receive remuneration for qualifying purchases; request statistics on purchases made using their code; and terminate this Agreement at any time with written notice.</p>
+      <p>The Partner undertakes to: promote Naity honestly without misleading users; not use spam or prohibited advertising methods; not transfer their promo code to third parties; not create fake purchases or artificially inflate statistics; and comply with applicable advertising laws.</p>
+
+      <h2>4. Company's Rights and Obligations</h2>
+      <p>The Company may modify these terms by publishing an updated version, suspend or terminate a promo code in case of violations, refuse payment for suspected fraudulent purchases, and terminate the Agreement for material breach with prior notice.</p>
+      <p>The Company undertakes to provide a unique promo code in a reasonable time, ensure accurate tracking of qualifying purchases, pay remuneration per Section 5, and notify the Partner of material changes.</p>
+
+      <h2>5. Remuneration and Payment</h2>
+      <p>The Partner's remuneration is calculated as a percentage of net revenue from purchases made using the Partner's promo code. The specific percentage is agreed individually between the parties before commencement of cooperation.</p>
+      <p>"Net revenue" means the amount actually received by the Company after deduction of payment processing fees, applicable taxes, and refunds.</p>
+      <p>Payments are made upon reaching the minimum payout threshold of <strong>USD 100.00</strong>. Accrued remuneration below the threshold carries over to the following period.</p>
+      <p>The payment method is agreed individually between the parties. Payment is made within <strong>14 business days</strong> from the end of the reporting month in which the threshold was reached. All taxes on the remuneration are the sole responsibility of the Partner.</p>
+
+      <h2>6. Promo Code Terms</h2>
+      <p>The promo code is unique and assigned exclusively to one Partner. It may not be sold, transferred, or sublicensed. The Company may deactivate a promo code in case of misuse, suspected fraud, or termination of the Agreement.</p>
+      <p>A purchase is "qualifying" if: (a) the user entered the promo code at checkout; (b) payment was successfully completed; and (c) the purchase was not subsequently refunded.</p>
+
+      <h2>7. Intellectual Property</h2>
+      <p>The Partner may use the Naity name, logo, and brand materials solely for the purpose of promoting the application and only in the form approved by the Company. No rights to the application, its source code, or intellectual property are transferred to the Partner.</p>
+
+      <h2>8. Limitation of Liability</h2>
+      <p>The Company is not liable for the Partner's lost profits or indirect, incidental, or consequential damages. The Company's total liability shall not exceed remuneration actually paid in the three months preceding the event giving rise to the claim. The Partner is solely responsible for their promotional activities and compliance with applicable law.</p>
+
+      <h2>9. Term and Termination</h2>
+      <p>This Agreement enters into force from the moment of email confirmation and is valid for an indefinite period. Either party may terminate with <strong>7 calendar days'</strong> written notice. The Company may terminate immediately in case of material breach, fraud, or reputational harm.</p>
+      <p>Upon termination, the Company will pay any accrued remuneration for qualifying purchases completed before the termination date, provided the minimum threshold has been reached.</p>
+
+      <h2>10. Amendments</h2>
+      <p>The Company may amend this Public Offer at any time by publishing the updated version. Amendments take effect 7 calendar days after publication. Continued participation after that date constitutes acceptance of the updated terms.</p>
+
+      <h2>11. Miscellaneous</h2>
+      <p>This Agreement constitutes the entire agreement between the parties regarding its subject matter. The parties are independent contractors. If any provision is found invalid, the remaining provisions continue in full force.</p>
+
+      <h2>12. Contact</h2>
+      <p>For partnership inquiries and all notices under this Agreement:<br>
+      <a href="mailto:naityapp@gmail.com">naityapp@gmail.com</a></p>
+    </div>
+  </div>
+
   <script>
     const nav = document.getElementById('nav');
-    const privacyOverlay = document.getElementById('privacy');
+    const overlays = document.querySelectorAll('.overlay');
 
     function route() {
-      if (window.location.hash === '#privacy') {
-        privacyOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        nav.style.display = 'none';
-        privacyOverlay.scrollTop = 0;
-      } else {
-        privacyOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        nav.style.display = '';
-      }
+      const hash = window.location.hash;
+      let anyActive = false;
+      overlays.forEach(overlay => {
+        if ('#' + overlay.id === hash) {
+          overlay.classList.add('active');
+          overlay.scrollTop = 0;
+          anyActive = true;
+        } else {
+          overlay.classList.remove('active');
+        }
+      });
+      document.body.style.overflow = anyActive ? 'hidden' : '';
+      nav.style.display = anyActive ? 'none' : '';
     }
 
     window.addEventListener('hashchange', route);
